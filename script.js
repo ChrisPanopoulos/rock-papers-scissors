@@ -101,6 +101,12 @@ buttons.forEach(function (i) {
         let c=computerPlay();
         playRound(i.className,c);
         let gam = game(i.className,c)
+        if(computerScore == 5 || playerScore == 5) {
+            computerScore=0;
+            playerScore=0;
+            
+            
+        }
         if (gam==1){
             computerScore+=1;
             
@@ -109,12 +115,7 @@ buttons.forEach(function (i) {
             playerScore+=1;
             
         }
-        if(computerScore == 5 || playerScore == 5) {
-            computerScore=0;
-            playerScore=0;
-            
-            
-        }
+        
         score1.innerHTML='Player score: '+playerScore;
         score2.innerHTML='Computer score: '+computerScore;
         
