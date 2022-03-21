@@ -109,7 +109,7 @@ buttons.forEach(function (i) {
             playerScore+=1;
             
         }
-        if(computerScore == 6 || playerScore == 6) {
+        if(computerScore == 5 || playerScore == 5) {
             computerScore=0;
             playerScore=0;
             
