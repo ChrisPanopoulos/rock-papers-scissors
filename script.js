@@ -49,38 +49,96 @@ function playRound(playerSelection, computerSelection) {
         console.log('Computer Wins!');
         return 0;
     }
-    else if (p == 'PAPER' && c == 'SCISSORS') {
+    else if (p == 'PAPERS' && c == 'SCISSORS') {
         console.log('Computer Wins');
         return 0;
     }
-    else {
+    else if (c == 'PAPERS' && p == 'SCISSORS') {
         console.log('Player Wins')
         return 1; 
     }
     
   }
 
-function game() {
-    let playerScore=0;
-    let computerScore=0;
-    
-    for (i=0; i<5; i++) {
-        let playerSelection=prompt('Enter your choice:');
-        let computerSelection=computerPlay();
 
-        playRound(playerSelection,computerSelection);
+
+function game(playerSelection,computerSelection) {
+
+    let computerScore=0;
+    let playerScore=0;
+    
 
         if(playRound(playerSelection,computerSelection)==0) {
-            computerScore+=1;
+            return 1;
             
         }
         else if(playRound(playerSelection,computerSelection)==1) {
-            playerScore+=1;
+            return 0;
         }
 
-        console.log('Player: '+ playerScore+'-'+computerScore+':Computer');
-    }
-    
+        
+
+        
+
+        
+   
 }
 
-game()
+
+
+
+let buttons=document.querySelectorAll('button');
+let display=document.querySelector('.display');
+let computerScore=0;
+let playerScore=0;
+let score1=document.querySelector('.result1');
+let score2=document.querySelector('.result2');
+
+
+buttons.forEach(function (i) {
+    i.addEventListener('click', () => {
+
+        let c=computerPlay();
+        playRound(i.className,c);
+        let gam = game(i.className,c)
+        if (gam==1){
+            computerScore+=1;
+            
+        }
+        else if(gam==0){
+            playerScore+=1;
+            
+        }
+        if(computerScore == 6 || playerScore == 6) {
+            computerScore=0;
+            playerScore=0;
+            
+            
+        }
+        score1.innerHTML='Player score: '+playerScore;
+        score2.innerHTML='Computer score: '+computerScore;
+        
+        
+
+
+       if(i.className=='rock') {
+            document.querySelector('.msg1').innerHTML='Player\'s choice: '+i.innerHTML;
+            document.querySelector('.msg2').innerHTML='Computer\'s choice: '+c;
+        }
+        else if(i.className=='papers') {
+            document.querySelector('.msg1').innerHTML='Player\'s choice: '+i.innerHTML;
+            document.querySelector('.msg2').innerHTML='Computer\'s choice: '+c;
+        }
+        else if(i.className=='scissors') {
+            document.querySelector('.msg1').innerHTML='Player\'s choice: '+i.innerHTML;
+            document.querySelector('.msg2').innerHTML='Computer\'s choice: '+c;
+            
+        }
+
+
+        
+        
+    });
+});
+
+
